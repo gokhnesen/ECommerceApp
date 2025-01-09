@@ -1,4 +1,5 @@
 using ECommerceAPI.Persistence;
+
 namespace ECommerceAPI.API
 {
     public class Program
@@ -7,11 +8,10 @@ namespace ECommerceAPI.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
-
-
             builder.Services.AddControllers();
-            builder.Services.AddOpenApi();
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             builder.Services.AddPersistenceServices(builder.Configuration);
 
@@ -19,13 +19,18 @@ namespace ECommerceAPI.API
 
             if (app.Environment.IsDevelopment())
             {
-                app.MapOpenApi();
+                app.UseSwagger();
+
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "ECommerceAPI V1");
+                    options.RoutePrefix = string.Empty; 
+                });
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

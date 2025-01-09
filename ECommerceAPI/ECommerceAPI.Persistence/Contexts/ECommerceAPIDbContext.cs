@@ -10,9 +10,9 @@ namespace ECommerceAPI.Persistence.Contexts
 {
     public class ECommerceAPIDbContext : DbContext
     {
-        public ECommerceAPIDbContext(DbContextOptions options) : base(options)
+        public ECommerceAPIDbContext(DbContextOptions<ECommerceAPIDbContext> options)
+              : base(options)
         {
-
         }
 
         public DbSet<Product> Products { get; set; }

@@ -18,7 +18,7 @@ namespace ECommerceAPI.Application.Interfaces
         Task<bool> RemoveAsync(string id);
         bool RemoveRange(List<T> model);
 
-        Task<bool> UpdateAsync(T model);
+        bool Update(T model);
 
         Task<int> SaveAsync();
 
