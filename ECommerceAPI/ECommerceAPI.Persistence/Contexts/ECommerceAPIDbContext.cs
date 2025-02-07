@@ -18,5 +18,21 @@ namespace ECommerceAPI.Persistence.Contexts
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entities = ChangeTracker.Entries<BaseEntity>();
+            foreach (var entity in entities)
+            {
+                _ = entity.State switch
+                {
+                    EntityState.Added => entity.Entity.CreatedDate = DateTime.UtcNow,
+                    EntityState.Modified => entity.Entity.UpdatedDate = DateTime.UtcNow,
+
+                };
+            }
+
+            return  await base.SaveChangesAsync(cancellationToken);
+        }
     }
 }
