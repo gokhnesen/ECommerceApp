@@ -13,12 +13,9 @@ export class AppComponent {
   /**
    *
    */
-  constructor(private toastrService: CustomToastrService) { 
-    toastrService.message("Sa","Gokhan",{messageType:ToastrMessageType.Info, position: ToastrPosition.TopCenter});
-    toastrService.message("Sa","Gokhan",{messageType:ToastrMessageType.Info, position: ToastrPosition.TopCenter}); 
-    toastrService.message("Sa","Gokhan",{messageType:ToastrMessageType.Info, position: ToastrPosition.TopCenter}); 
-    toastrService.message("Sa","Gokhan",{messageType:ToastrMessageType.Info, position: ToastrPosition.TopCenter}); 
-
+  constructor() { 
 
   }
 }
+
+$.get("https://localhost:7091/api/Products")
